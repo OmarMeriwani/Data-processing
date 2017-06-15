@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Singers" EntityType="Model1.Store.Singers" store:Type="Tables" store:Schema="dbo" store:Name="Singers">
+      <DefiningQuery>SELECT 
+      [Singers].[Singer] AS [Singer], 
+      [Singers].[Link] AS [Link]
+      FROM [dbo].[Singers] AS [Singers]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C:\USERS\OMAR\DOCUMENTS\GITHUB\DATA-PROCESSING\FIND TURKISH SINGERS\FIND TURKISH SINGERS\SINGERSDB.MDF.dbo.Singers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Singers">
+    <Key>
+      <PropertyRef Name="Singer" />
+    </Key>
+    <Property Name="Singer" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Link" Type="nvarchar" MaxLength="600" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Singers" EntityType="Model1.Singer" />
+  </EntityContainer>
+  <EntityType Name="Singer">
+    <Key>
+      <PropertyRef Name="Singer1" />
+    </Key>
+    <Property Type="String" Name="Singer1" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Link" MaxLength="600" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

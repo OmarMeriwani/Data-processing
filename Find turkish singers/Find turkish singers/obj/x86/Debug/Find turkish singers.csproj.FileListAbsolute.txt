@@ -2,3 +2,6 @@ C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish
 C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\bin\Debug\Find turkish singers.pdb
 C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\obj\x86\Debug\Find turkish singers.exe
 C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\obj\x86\Debug\Find turkish singers.pdb
+C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\bin\Debug\SingersDB.mdf
+C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\bin\Debug\SingersDB_log.ldf
+C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\bin\Debug\Find turkish singers.exe.config
