@@ -23,16 +23,18 @@ namespace Find_turkish_singers
         static string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\SingersDB.mdf;Integrated Security=True;User Instance=True";
         static void Main(string[] args)
         {
-            string erkek = "https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar";
-            string erkek2 = "https://tr.wikipedia.org/w/index.php?title=Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar&pagefrom=Mahmut+Tuncer#mw-pages";
-            string kadin = "https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_kad%C4%B1n_%C5%9Fark%C4%B1c%C4%B1lar";
-            string kadin2 = "https://tr.wikipedia.org/w/index.php?title=Kategori:T%C3%BCrk_kad%C4%B1n_%C5%9Fark%C4%B1c%C4%B1lar&pagefrom=P%C4%B1nar+Aylin#mw-pages";
+            string[] singers = {"https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar", 
+                                 "https://tr.wikipedia.org/w/index.php?title=Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar&pagefrom=Mahmut+Tuncer#mw-pages",
+            "https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_kad%C4%B1n_%C5%9Fark%C4%B1c%C4%B1lar",
+             "https://tr.wikipedia.org/w/index.php?title=Kategori:T%C3%BCrk_kad%C4%B1n_%C5%9Fark%C4%B1c%C4%B1lar&pagefrom=P%C4%B1nar+Aylin#mw-pages"};
             Console.WriteLine("Reading..");
-            string erkekdata = readUrl(kadin2);
-            Console.WriteLine("Parsing..");
-            //Console.WriteLine(erkekdata);
-            SaveToDB(getSingers(erkekdata));
-            Console.WriteLine("List is finished..");
+            foreach (string a in singers)
+            {
+                string edata = readUrl(a);
+                Console.WriteLine("Parsing..");
+                SaveToDB(getSingers(edata));
+                Console.WriteLine("List is finished..");
+            }
             FindUnexistPagesInDB();
             Console.WriteLine("Unavailable list finished..");
             Console.ReadLine();
