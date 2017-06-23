@@ -7,7 +7,5 @@ namespace Find_turkish_singers
 {
     class DateFinder
     {
-        asd as d
-            sadsad
     }
 }
