@@ -8,5 +8,7 @@ namespace Date_finder
     class Salon : car
     {
         int number_of_seats;
+        bool CD_Player;
+        bool manual_gear;
     }
 }
