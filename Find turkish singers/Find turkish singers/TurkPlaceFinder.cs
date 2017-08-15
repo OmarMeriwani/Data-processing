@@ -33,6 +33,6 @@ namespace Find_turkish_singers
          1- Have one of the words.
          2- Is link
         */
-        string[] musicType = {"Müzik", "Müziği"}
+        string[] musicType = { "Müzik", "Müziği", "Musikisi" };
     }
 }
