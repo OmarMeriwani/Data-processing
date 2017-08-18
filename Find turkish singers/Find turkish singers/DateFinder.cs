@@ -32,8 +32,9 @@ namespace Find_turkish_singers
          * - TEXT (YEAR) ex: Adam Gibi (2004)
          * - in the first paragraph (Full date, city name, country name -  Full date, city name, country name)
          * - (d. FULL DATE, PLACE)
+         * - Add sub-titles with the event.
          */
-        string[] year = { /*4 digits*/"'de", "yılında", "yılından itibaren", /*GET THE LAST YEAR*/ "Aynı yıl içerisinde" };
+        string[] year = { /*4 digits*/"'de", "'te", "yılında", "yılından itibaren", /*GET THE LAST YEAR*/ "Aynı yıl içerisinde" };
         string[] TrMonths = {"ocak", "şubat", "mart", "nisan", "mayıs", "haziran", "temmuz","temmuz","ağustos","eylül","ekim","kasım","aralık" };
         
         class Eventt
