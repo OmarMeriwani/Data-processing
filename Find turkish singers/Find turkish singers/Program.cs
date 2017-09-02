@@ -5,6 +5,8 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Find_turkish_singers
 {
@@ -23,6 +25,10 @@ namespace Find_turkish_singers
         static string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\SingersDB.mdf;Integrated Security=True;User Instance=True";
         static void Main(string[] args)
         {
+
+        }
+        static void ImportSingers()
+        {
             string[] singers = {"https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar", 
                                  "https://tr.wikipedia.org/w/index.php?title=Kategori:T%C3%BCrk_erkek_%C5%9Fark%C4%B1c%C4%B1lar&pagefrom=Mahmut+Tuncer#mw-pages",
             "https://tr.wikipedia.org/wiki/Kategori:T%C3%BCrk_kad%C4%B1n_%C5%9Fark%C4%B1c%C4%B1lar",
@@ -30,7 +36,7 @@ namespace Find_turkish_singers
             Console.WriteLine("Reading..");
             foreach (string a in singers)
             {
-                string edata = readUrl(a);
+                string edata = readUrl(a, false);
                 Console.WriteLine("Parsing..");
                 SaveToDB(getSingers(edata));
                 Console.WriteLine("List is finished..");
@@ -39,7 +45,6 @@ namespace Find_turkish_singers
             Console.WriteLine("Unavailable list finished..");
             Console.ReadLine();
         }
-
         static void FindUnexistPagesInDB()
         {
             string notFound = "Vikipedi'de bu isimde bir madde bulunmamaktadır";
@@ -50,7 +55,7 @@ namespace Find_turkish_singers
             SqlDataReader r = new SqlCommand("select Singer, link from Singers where availablePage is null",conn).ExecuteReader();
             while (r.Read())
             {
-                string page = readUrl(r[1].ToString());
+                string page = readUrl(r[1].ToString(), false );
                 string Exist = "";
                 if (page.Contains(notFound) == true || page.Contains("##Error") == true )
                 {
@@ -88,7 +93,7 @@ namespace Find_turkish_singers
             conn.Dispose();
             conn.Close();
         }
-        static string readUrl(string url)
+        static async string readUrl(string url, bool IsPlainText)
         {
             string data = "";
             try
@@ -110,7 +115,10 @@ namespace Find_turkish_singers
                     }
 
                     data = readStream.ReadToEnd();
-
+                    if (IsPlainText)
+                    {
+                        data = HtmlToPlainText(data);
+                    }
                     response.Close();
                     readStream.Close();
                 }
@@ -123,6 +131,27 @@ namespace Find_turkish_singers
                     return "##Error: " + ex.Message;
             }
             return data;
+        }
+        static string HtmlToPlainText(string html)
+        {
+            const string tagWhiteSpace = @"(>|$)(\W|\n|\r)+<";//matches one or more (white space or line breaks) between '>' and '<'
+            const string stripFormatting = @"<[^>]*(>|$)";//match any character between '<' and '>', even when end tag is missing
+            const string lineBreak = @"<(br|BR)\s{0,1}\/{0,1}>";//matches: <br>,<br/>,<br />,<BR>,<BR/>,<BR />
+            var lineBreakRegex = new Regex(lineBreak, RegexOptions.Multiline);
+            var stripFormattingRegex = new Regex(stripFormatting, RegexOptions.Multiline);
+            var tagWhiteSpaceRegex = new Regex(tagWhiteSpace, RegexOptions.Multiline);
+
+            var text = html;
+            //Decode html specific characters
+            text = System.Net.WebUtility.HtmlDecode(text);
+            //Remove tag whitespace/line breaks
+            text = tagWhiteSpaceRegex.Replace(text, "><");
+            //Replace <br /> with line breaks
+            text = lineBreakRegex.Replace(text, Environment.NewLine);
+            //Strip formatting
+            text = stripFormattingRegex.Replace(text, string.Empty);
+
+            return text;
         }
 
         static List<Singerr> getSingers(string page)

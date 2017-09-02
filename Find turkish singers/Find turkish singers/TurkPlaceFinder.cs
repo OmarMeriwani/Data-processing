@@ -25,10 +25,10 @@ namespace Find_turkish_singers
         string[] city = { "şehir", "şehridir", "şehri", "merkezidir", "kenttir", "şehirdir" };
         string[] language = { "Kürtçe" };
         /*
-        - Word +  kökenli. in the first paragraph
+        - Word +  kökenli. in the first paragraph >> bring all the sentence
         - 
         */
-        string[] origin = { "kökenli" };
+        string[] origin = { "kökenli", "köken" };
         /*
          1- Have one of the words.
          2- Is link
