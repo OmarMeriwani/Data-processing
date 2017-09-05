@@ -7,6 +7,7 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace Find_turkish_singers
 {
@@ -93,7 +94,7 @@ namespace Find_turkish_singers
             conn.Dispose();
             conn.Close();
         }
-        static async string readUrl(string url, bool IsPlainText)
+        static  string readUrl(string url, bool IsPlainText)
         {
             string data = "";
             try
