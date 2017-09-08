@@ -34,9 +34,9 @@ namespace Find_turkish_singers
             foreach (HtmlNode table in doc.DocumentNode.SelectNodes("//tbody"))
             {
                  HtmlNode row = table.SelectNodes("tr").First();
-                foreach (HtmlNode cell in row.SelectNodes("th|td"))
+                foreach (HtmlNode cell in row.SelectNodes("td"))
                 {
-
+                    HtmlNode tbl = cell.SelectNodes("//table").First();
                 }
             }
         }
