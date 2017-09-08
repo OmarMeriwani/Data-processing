@@ -6,7 +6,9 @@
     [WinterAvgMin]     FLOAT (53)     NULL,
     [SummerAvgMax]     FLOAT (53)     NULL,
     [Equator]          BIT            NULL,
-    [NorthPole] BIT NULL, 
+    [NorthPole]        BIT            NULL,
+    [AnnualTemp] FLOAT NULL, 
+    [ISOCode] NCHAR(3) NULL, 
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

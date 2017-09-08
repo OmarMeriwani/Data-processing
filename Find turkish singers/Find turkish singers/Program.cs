@@ -7,7 +7,8 @@ using System.IO;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Net.Http;
+using HtmlAgilityPack;
+using System.Xml;
 
 namespace Find_turkish_singers
 {
@@ -24,9 +25,46 @@ namespace Find_turkish_singers
     class Program
     {
         static string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\Omar\Documents\GitHub\Data-processing\Find turkish singers\Find turkish singers\SingersDB.mdf;Integrated Security=True;User Instance=True";
+
+
         static void Main(string[] args)
         {
+            HtmlWeb w = new HtmlWeb();
+            HtmlDocument doc = w.Load("https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3");
+            foreach (HtmlNode table in doc.DocumentNode.SelectNodes("//tbody"))
+            {
+                 HtmlNode row = table.SelectNodes("tr").First();
+                foreach (HtmlNode cell in row.SelectNodes("th|td"))
+                {
 
+                }
+            }
+        }
+
+        static bool IsUpper( string value)
+        {
+            // Consider string to be uppercase if it has no lowercase letters.
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (char.IsLower(value[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        static bool IsLower( string value)
+        {
+            // Consider string to be lowercase if it has no uppercase letters.
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (char.IsUpper(value[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
         static void ImportSingers()
         {

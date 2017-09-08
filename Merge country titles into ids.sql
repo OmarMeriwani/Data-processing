@@ -9,3 +9,5 @@ USING Countries AS S
 ON (T.Country = S.title) 
 WHEN MATCHED 
     THEN UPDATE SET T.Country = S.id;
+
+
