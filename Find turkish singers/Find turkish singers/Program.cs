@@ -31,7 +31,7 @@ namespace Find_turkish_singers
         {
             HtmlWeb w = new HtmlWeb();
             HtmlDocument doc = w.Load("https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3");
-            foreach (HtmlNode table in doc.DocumentNode.SelectNodes("//tbody"))
+            foreach (HtmlNode table in doc.DocumentNode.SelectNodes("//table"))
             {
                  HtmlNode row = table.SelectNodes("tr").First();
                 foreach (HtmlNode cell in row.SelectNodes("td"))
